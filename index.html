@@ -1,0 +1,173 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احصل على 1000 شدة ببجي مجانًا</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            direction: rtl;
+            color: #fff;
+        }
+
+        /* تنسيق الفيديو كخلفية */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        /* تنسيق المحتوى الرئيسي */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 50px 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* تنسيق العنوان بستايل PUBG */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #f1c40f;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* تنسيق النصوص التحفيزية */
+        .motivational-text {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #ffffff;
+            text-shadow: 0 0 5px #000;
+        }
+
+        /* تنسيق الزر */
+        .claim-button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #f1c40f, #e67e22);
+            color: #000;
+            border: 3px solid #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 10px #f1c40f;
+            text-decoration: none;
+        }
+
+        .claim-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #f1c40f, 0 0 30px #e67e22;
+        }
+
+        .claim-button:active {
+            transform: scale(0.95);
+        }
+
+        /* تنسيق التصميم المتجاوب */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .motivational-text {
+                font-size: 1rem;
+            }
+            .claim-button {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الفيديو كخلفية -->
+    <video id="background-video" autoplay loop muted>
+        <source src="https://files.catbox.moe/aze0vd.mp4" type="video/mp4">
+        المتصفح لا يدعم تشغيل الفيديو.
+    </video>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <h1>احصل على 1000 شدة ببجي مجانًا الآن</h1>
+        <p class="motivational-text">لا تفوت الفرصة!</p>
+        <p class="motivational-text">انضم إلى ملايين اللاعبين واستمتع بالمكافآت!</p>
+        <p class="motivational-text">كن الأفضل في ساحة المعركة!</p>
+        <a href="https://optilinklock.com/1809100" class="claim-button" onclick="playAWMSound()">احصل عليها الآن</a>
+    </div>
+
+    <!-- السكربت لتشغيل صوت AWM وتخطي أول 5 ثوانٍ -->
+    <script>
+        // تشغيل صوت AWM
+        function playAWMSound() {
+            const audio = new Audio('https://www.myinstants.com/media/sounds/awm_shot.mp3');
+            audio.play().catch(error => {
+                console.error('خطأ في تشغيل الصوت:', error);
+            });
+        }
+
+        // تخطي أول 5 ثوانٍ من الفيديو
+        const video = document.getElementById('background-video');
+        video.addEventListener('loadedmetadata', () => {
+            video.currentTime = 5; // ابدأ من الثانية الخامسة
+        });
+    </script>
+</body>
+</html>
